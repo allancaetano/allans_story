@@ -1,0 +1,1 @@
+</div> <!-- Fechamento da tag DIV com class = wrapper no arquivo header.php -->
