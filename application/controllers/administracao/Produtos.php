@@ -65,6 +65,7 @@ class Produtos extends CI_Controller {
 
     public function excluir($produto) {
         if ($this->modelprodutos->excluir($produto)) {
+            unlink('./assets/img/produtos/'. $produto . '.jpg'); // Exclui arquivo
             redirect(base_url('administracao/produtos'));
         } else {
             echo "Houve um erro ao excluir a categoria";
@@ -115,7 +116,7 @@ class Produtos extends CI_Controller {
     public function nova_foto() {
         $id = $this->input->post('id');
         $config['upload_path'] = './assets/img/produtos';
-        $config['allowed_types'] = 'jpg';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['file_name'] = $id . ".jpg";
         $config['overwrite'] = TRUE;
         $this->load->library('upload', $config);
