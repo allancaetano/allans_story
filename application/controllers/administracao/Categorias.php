@@ -43,6 +43,7 @@ class Categorias extends CI_Controller {
     
     public function excluir($categoria) {
         if ($this->modelcategorias->excluir($categoria)) {
+            unlink('./assets/img/categorias/'. $categoria . '.jpg'); // Exclui arquivo
             redirect(base_url('administracao/categorias'));
         } else {
             echo "Houve um erro ao excluir a categoria";
@@ -80,7 +81,7 @@ class Categorias extends CI_Controller {
     public function nova_foto() {
         $id = $this->input->post('id');
         $config['upload_path'] = './assets/img/categorias';
-        $config['allowed_types'] = 'jpg';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['file_name'] = $id . ".jpg";
         $config['overwrite'] = TRUE;
         $this->load->library('upload', $config);
